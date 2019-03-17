@@ -12,7 +12,12 @@ def number_of_occurrences(input_str):
 
     for letter in letters:
         index_of_current_letter = letters.index(letter)
-        occurrences_num = str(number_of_occurrences_list[index_of_current_letter])
+        occurrences = str(number_of_occurrences_list[index_of_current_letter])
 
+        end_symbol = ""
         if index_of_current_letter != len(letters) - 1:
-            print("'" + letter + "'" + ":" + occurrences_num, end=", ")
+            end_symbol = ", "
+        else:
+            end_symbol = "\n"
+
+        print("'" + letter + "'" + ":" + occurrences, end=end_symbol)
