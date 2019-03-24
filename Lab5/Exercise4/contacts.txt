@@ -1,0 +1,3 @@
+name:Miho,address:Mladost3,birthday:birthday,phone number:phone number,email:email,profession:profession,interests:interests
+name:mircho,address:nadezda1,birthday:07.09.1965,phone number:0898652477,email:mircho@abv.bg,profession:builder,interests:football
+name:Kiro,address:Studentski grad,birthday:birthday,phone number:phone number,email:email,profession:profession,interests:interests
