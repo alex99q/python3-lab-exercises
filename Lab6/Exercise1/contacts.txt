@@ -1,0 +1,2 @@
+name:"name",address:"address",birthday:"birthday",phone number:"phone number",email:"email",profession:"profession",interests:"interests"
+name:"name",address:"address",birthday:"birthday",phone number:"phone number",email:"email",profession:"profession",interests:"interests"
