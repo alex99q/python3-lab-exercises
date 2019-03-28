@@ -1,2 +1,2 @@
-name:"name",address:"address",birthday:"birthday",phone number:"phone number",email:"email",profession:"profession",interests:"interests"
-name:"name",address:"address",birthday:"birthday",phone number:"phone number",email:"email",profession:"profession",interests:"interests"
+name:Pesho,address:Mladost 3,birthday:"birthday",phone number:phone number,email:"email",profession:"profession",interests:"interests"
+name:Kiko,address:Studentski grad,birthday:"birthday",phone number:"phone number",email:"email",profession:"profession",interests:"interests"

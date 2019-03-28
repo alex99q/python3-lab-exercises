@@ -77,14 +77,14 @@ class Contact:
     def set_interests(self, interests):
         self.__interests = interests
 
-    def create_contact(self):
+    def create_entry(self):
         with open("contacts.txt", mode='a', encoding='utf-8') as file:
             string_to_write = str(self)
 
             file.write(string_to_write + "\n")
 
     @staticmethod
-    def search_contacts(input_str):
+    def search_entries(input_str):
         parameter = input_str.split(':')[0].strip().lower()
         value = input_str.split(':')[1].strip()
 
@@ -104,31 +104,51 @@ class Contact:
 
         return matching_contacts
 
-    def update_contact(self, new_contact):
+    @staticmethod
+    def remove_entry(contact_to_remove):
 
         with open("contacts.txt", "r") as file:
             lines = file.readlines()
         with open("contacts.txt", "w") as file:
+            is_removed = False
             for line in lines:
-                if line.strip("\n") == str(self).strip("\n"):
-                    file.write(str(new_contact))
+                if line.strip("\n") == str(contact_to_remove).strip("\n") and is_removed == False:
+                    is_removed = True
+                else:
+                    file.write(line)
+
+    def update_entry(self, new_contact):
+
+        with open("contacts.txt", "r") as file:
+            lines = file.readlines()
+        with open("contacts.txt", "w") as file:
+            is_changed = False
+            for line in lines:
+                if line.strip("\n") == str(self).strip("\n") and is_changed == False:
+                    file.write(str(new_contact) + "\n")
+                    is_changed = True
                 else:
                     file.write(line)
 
     def update_parameter(self, parameter, value):
+        updated_contact = Contact.parse(str(self))
+
         if parameter == "name":
-            self.__name = value
+            updated_contact.set_name(value)
         elif parameter == "address":
-            self.__address = value
+            updated_contact.set_address(value)
         elif parameter == "birthday":
-            self.__birthday = value
+            updated_contact.set_birthday(value)
         elif parameter == "phone number":
-            self.__phone_number = value
+            updated_contact.set_phone_number(value)
         elif parameter == "email":
-            self.__email = value
+            updated_contact.set_email(value)
         elif parameter == "profession":
-            self.__profession = value
+            updated_contact.set_profession(value)
         elif parameter == "interests":
-            self.__interests = value
+            updated_contact.set_interests(value)
         else:
             print("The " + parameter + " parameter is not a valid input.")
+            return
+
+        return updated_contact

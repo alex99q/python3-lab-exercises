@@ -2,8 +2,6 @@ from contact import Contact
 
 print("Welcome to your personal contact book.")
 
-allowed_parameters = ("name", "address", "birthday", "phone number", "email", "profession", "interests")
-
 while True:
     print('''
     Your options are:
@@ -34,19 +32,19 @@ while True:
             contact_parameter = contact_info.split(':')[0].strip().lower()
             contact_value = contact_info.split(':')[1].strip()
 
-            contact.update_parameter(contact_parameter, contact_value)
+            contact = contact.update_parameter(contact_parameter, contact_value)
 
         if contact.get_name() == "" or contact.get_phone_number() == "":
             print("Your input must contain name parameter and phone number parameter.")
             continue
 
-        contact.create_contact()
+        contact.create_entry()
 
     elif user_choise == 2:
         user_input = input(
             "Search for a contact you want to update by what (example - name: \"the name you are searching for\"): ")
 
-        matched_contacts = Contact.search_contacts(user_input)
+        matched_contacts = Contact.search_entries(user_input)
 
         index_to_change = 0
         if len(matched_contacts) == 0:
@@ -70,19 +68,37 @@ while True:
 
         new_contact = old_contact.update_parameter(parameter_to_change, value_to_change)
 
-        old_contact.update_contact(new_contact)
-
+        old_contact.update_entry(new_contact)
 
     elif user_choise == 3:
         user_input = input("Search for a contact by what (example - name: \"the name you are searching for\"): ")
 
-        matched_contacts = Contact.search_contacts(user_input)
+        matched_contacts = Contact.search_entries(user_input)
 
         print("There are " + str(len(matched_contacts)) + " contacts that match your criteria: \n")
         for i in range(0, len(matched_contacts)):
             print("\t" + str(i + 1) + ") " + str(matched_contacts[i]))
 
     elif user_choise == 4:
-        pass
+        user_input = input(
+            "Search for a contact you want to remove by what (example - name: \"the name you are searching for\"): ")
+
+        matched_contacts = Contact.search_entries(user_input)
+
+        index_to_change = 0
+        if len(matched_contacts) == 0:
+            print("There are no matching contacts")
+            continue
+
+        elif len(matched_contacts) > 1:
+            print("There are " + str(len(matched_contacts)) + " contacts that match your criteria: ")
+
+            for i in range(0, len(matched_contacts)):
+                print("\t" + str(i + 1) + ") " + str(matched_contacts[i]))
+
+            index_to_change = int(input("Which contact to change? ")) - 1
+
+        Contact.remove_entry(matched_contacts[index_to_change])
+
     elif user_choise == 5:
         break
