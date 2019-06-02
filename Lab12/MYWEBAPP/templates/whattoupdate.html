@@ -1,0 +1,13 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename = 'mystyles.css') }} media="screen" />
+    <title> My contacts book </title>
+</head>
+<body align='center'>
+
+{% include 'menu.html' %}
+<h1>Search contacts which you want to modify: </h1>
+{% include 'searchform.html' %}
+
+</body>
+</html>

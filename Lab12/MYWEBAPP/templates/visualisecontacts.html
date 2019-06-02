@@ -1,0 +1,55 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename = 'mystyles.css') }} media="screen" />
+    <title> My contacts book </title>
+</head>
+<body align='center'>
+
+{% include 'menu.html' %}
+
+
+
+
+{% if 'search' in whichpath %}
+<br><br>
+<table border = 1 align='center'> 
+  <tr bgcolor='white'><th>Names</th><th>Address</th><th>Birth Day</th><th>Phone</th><th>email</th><th>Profession</th><th>Interests</th></tr>
+  {% for row in contactdb  %}
+    <tr bgcolor="lightgrey">
+    {% for item in row.split(";") %}
+      <td>{{ item }}</td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </tr>
+</table>
+
+{% else %}
+
+<br><br>
+<form action={{ whichpath }} method='POST'>
+<table border = 1 align='center'>
+  <tr bgcolor='white'><th>Confirm Update</th><th>Names</th><th>Address</th><th>Birth Day</th><th>Phone</th><th>email</th><th>Profession</th><th>Interests</th></tr> 
+  {% for items in contactdb %}
+    {% set index=loop.index0 %}
+    <tr>
+      <td><input type='checkbox' name='records_update' value= {{ index }}></td>
+      <td><input type='text' name="names_{{ index }}" value = {{ items[0] }}></td>
+      <td><input type='text' name="address_{{ index }}" value = {{ items[1] }}></td>
+      <td><input type='text' name="bday_{{ index }}" value = {{ items[2] }}></td>
+      <td><input type='text' name="phone_{{ index }}" value = {{ items[3] }}></td>
+      <td><input type='text' name="email_{{ index }}" value = {{ items[4] }}></td>
+      <td><input type='text' name="prof_{{ index }}" value = {{ items[5] }}></td>
+      <td><input type='text' name="inter_{{ index }}" value = {{ items[6] }}></td>
+    </tr>
+  {% endfor %}
+  </tr>
+  </table>
+  <br><br><input type='submit' name='Update_button' value='Update selected!'/>
+  </form>
+  
+{% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+table.table2 { 
+  display: table;
+  border-collapse: separate;
+  border-spacing: 20px;
+  border-color: gray;
+}

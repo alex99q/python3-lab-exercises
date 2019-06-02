@@ -1,0 +1,27 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="mystyles.css" media="screen" />
+    <title> My contacts book </title>
+</head>
+<body align='center'>
+{% include 'menu.html' %}
+<h1>Welcome to my contact book</h1>
+
+{% if 'user' in session %}
+<h2>You are logged in as {{ session['user'] }}</h2>
+<p>To logout click <a href="/logout">here</a></p>
+{% else %}
+    <form action="/" id="login_form" method='POST'>
+    <h2>Login</h2>
+    <p>Enter your username:</p>
+    <p><input type = "text" name="username" /></p>
+
+    <p>Enter your password:</p>
+    <p><input type = "password" name="password" /></p>
+
+    <p><input type = "submit" value = "submit" /></p>
+    </form>
+{% endif %}
+
+</body>
+</html>

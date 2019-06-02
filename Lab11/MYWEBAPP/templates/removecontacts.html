@@ -1,0 +1,33 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename = 'mystyles.css') }} media="screen" />
+    <title> My contacts book </title>
+</head>
+<body align='center'>
+
+{% include 'menu.html' %}
+<form action=/remove method='POST'>
+<h1>Chose which contacts you want to remove</h1>
+<table border = 1 align='center'> 
+<tr bgcolor='white'><th>Select</th><th>Names</th><th>Address</th><th>Birth Day</th><th>Phone</th><th>email</th><th>Profession</th><th>Interests</th></tr> 
+{% for index, row in contactdb  %}
+  {% if index % 2 != 0 %}
+    {% set  bgcolor='lightblue' %}
+  {% else %}
+    {% set  bgcolor='lightgrey' %}
+  {% endif %} 
+  <tr bgcolor="{{bgcolor}}"><td><input type='checkbox' name='records_removal' value="{{ index }}"></td>
+  {%for item in row.split(";") %}
+    <td>{{ item }}</td>
+  {% endfor %}
+  </tr>
+{% endfor %} 
+</table>
+<h3>I confirm removal of selected rows!</h3>
+<input type='checkbox' name='confirmation'><br><br>
+<input type="hidden" name="confirmation" value="0">
+<br><br>
+<input type='submit' name='removal_button' value='Removeselected!'/>
+</form>
+</body>
+</html>

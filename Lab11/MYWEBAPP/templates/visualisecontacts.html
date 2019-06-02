@@ -1,0 +1,56 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename = 'mystyles.css') }} media="screen" />
+    <title> My contacts book </title>
+</head>
+<body align='center'>
+
+{% include 'menu.html' %}
+
+
+
+
+{% if 'search' in whichpath %}
+<br><br>
+<table border = 1 align='center'> 
+  <tr bgcolor='white'><th>Names</th><th>Address</th><th>Birth Day</th><th>Phone</th><th>email</th><th>Profession</th><th>Interests</th></tr> 
+  {% for row in contactdb  %}
+    <tr bgcolor="lightgrey">
+    {% for item in row.split(";") %}
+      <td>{{ item }}</td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </tr>
+</table>
+
+{% else %}
+
+<br><br>
+<form action={{ whichpath }} method='POST'>
+<table border = 1 align='center'>
+  <tr bgcolor='white'><th>Confirm Update</th><th>Names</th><th>Address</th><th>Birth Day</th><th>Phone</th><th>email</th><th>Profession</th><th>Interests</th></tr> 
+  {% for index, row in contactdb  %}
+    {% set outer_loop = loop %}
+    {% if index % 2 != 0 %}
+      {% set  bgcolor='lightblue' %}
+    {% else %}
+      {% set  bgcolor='lightgrey' %}
+    {% endif %} 
+    <tr bgcolor="{{bgcolor}}">
+    <td><input type='checkbox' id="id_{{ index }}" name='records_removal' value="{{ index }}"></td>
+    {% for item in row.split(";") %}
+      <td><input type='text' name={{ outer_loop.index|string + loop.index|string }} value = {{ item }}></td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </tr>
+  </table>
+  <br><br><input type='submit' name='Update_button' value='Update selected!'/>
+  </form>
+  
+{% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="/static/myScript.js"></script>
+    </head>
+    <body {{ warning_msg|safe }}>
+        <ul style="display:block; width:10%; margin-bottom:100%; float:left">
+            <li><a href="/">Home</a></li>
+            <li><a href="/create">Create</a></li>
+            <li><a href="/update">Update</a></li>
+            <li><a href="/remove">Remove</a></li>
+        </ul>
+        <div>
+            <form action="http://localhost:5000/create" id="creation_form" method="POST" onsubmit="return submit_form()">
+                <p>Enter Name:</p>
+                <p><input type = "text" name="name" /></p>
+
+                <p>Enter Address:</p>
+                <p><input type = "text" name="address" /></p>
+
+                <p>Enter Birthday:</p>
+                <p><input type = "text" name="birthday" /></p>
+
+                <p>Enter Phone number:</p>
+                <p><input type = "text" name="phone_number" /></p>
+
+                <p>Enter Email:</p>
+                <p><input type = "text" name="email" /></p>
+
+                <p>Enter Profession:</p>
+                <p><input type = "text" name="profession" /></p>
+
+                <p>Enter Interests:</p>
+                <p><input type = "text" name="interests" /></p>
+
+                <p><input type = "submit" value = "submit" /></p>
+            </form>
+        </div>
+    </body>
+</html>
